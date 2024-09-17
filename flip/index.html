@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Filmes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Catálogo de Filmes</h1>
+    <div class="container">
+        <div class="form-section">
+            <h2 id="formTitle">Cadastrar Novo Filme</h2>
+            <form id="filmForm">
+                <input type="hidden" id="editIndex"> <!-- Adicionado para saber qual filme editar -->
+                <label for="nome">Nome do Filme:</label>
+                <input type="text" id="nome" required>
+                
+                <label for="classificacao">Classificação Indicativa:</label>
+                <input type="text" id="classificacao" required>
+                
+                <label for="duracao">Duração (min):</label>
+                <input type="number" id="duracao" required>
+                
+                <label for="genero">Gênero:</label>
+                <input type="text" id="genero" required>
+                
+                <label for="ano">Ano de Lançamento:</label>
+                <input type="number" id="ano" required>
+                
+                <label for="sinopse">Sinopse:</label>
+                <textarea id="sinopse" rows="4" required></textarea>
+                
+                <button type="submit">Cadastrar Filme</button>
+                <button type="button" id="cancelEdit" style="display: none;">Cancelar</button> <!-- Botão de cancelar -->
+            </form>
+        </div>
+        
+        <div class="search-section">
+            <h2>Buscar Filme</h2>
+            <input type="text" id="search" placeholder="Digite o nome do filme">
+            <button onclick="searchFilm()">Buscar</button>
+        </div>
+
+        <div class="list-section">
+            <h2>Lista de Filmes</h2>
+            <ul id="filmList"></ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+    <script src="script.js"></script>
+</body>
+</html>
