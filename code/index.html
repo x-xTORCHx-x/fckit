@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Filmes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 class="title">Catálogo de Filmes</h1>
+    <div class="container">
+        <div class="form-section">
+            <h2 id="formTitle">Cadastrar Novo Filme</h2>
+            <form id="filmForm">
+                <input type="hidden" id="editIndex">
+
+                <label for="nome">Nome do Filme:</label>
+                <input type="text" id="nome" required class="form-input">
+
+                <label for="classificacao">Classificação Indicativa:</label>
+                <input type="text" id="classificacao" required class="form-input">
+
+                <label for="duracao">Duração (min):</label>
+                <input type="number" id="duracao" required class="form-input">
+
+                <label for="genero">Gênero:</label>
+                <input type="text" id="genero" required class="form-input">
+
+                <label for="ano">Ano de Lançamento:</label>
+                <input type="number" id="ano" required class="form-input">
+
+                <label for="sinopse">Sinopse:</label>
+                <textarea id="sinopse" rows="4" required class="form-input"></textarea>
+
+                <label for="trailer">URL do Trailer:</label>
+                <input type="url" id="trailer" placeholder="Cole a URL do trailer aqui" required class="form-input">
+
+                <label for="avaliacao">Avaliação (1 a 5 estrelas):</label>
+                <input type="number" id="avaliacao" min="1" max="5" required class="form-input">
+
+                <label for="comentario">Comentário:</label>
+                <textarea id="comentario" rows="2" class="form-input"></textarea>
+
+                <button type="submit" class="form-button">Cadastrar Filme</button>
+                <button type="button" id="cancelEdit" style="display: none;" class="form-button">Cancelar</button>
+            </form>
+        </div>
+        
+        <div class="search-section">
+            <h2>Buscar Filme</h2>
+            <input type="text" id="search" placeholder="Digite o nome do filme" class="form-input">
+            <button onclick="searchFilm()" class="form-button">Buscar</button>
+        </div>
+        
+        
+
+        <div class="list-section">
+            <h2>Lista de Filmes</h2>
+            <ul id="filmList"></ul>
+        
+            <h2>Favoritos</h2>
+            <ul id="favoriteList"></ul>
+        
+            <h2>Assistir Depois</h2>
+            <ul id="watchLaterList"></ul>
+        </div>
+    </div>
+
+    <button id="toggleTheme" class="form-button">Mudar para Modo Escuro</button>
+    <script src="script.js"></script>
+</body>
+</html>
