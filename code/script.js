@@ -6,10 +6,12 @@ const searchInput = document.getElementById('search');
 const formTitle = document.getElementById('formTitle');
 const cancelEditButton = document.getElementById('cancelEdit');
 const toggleThemeButton = document.getElementById('toggleTheme');
+const recommendedList = document.getElementById('recommendedList');
 
 let films = [];
 let editIndex = -1;
 let darkMode = false;
+let userRatings = {};
 
 function loadTheme() {
     document.body.classList.toggle('dark-mode', darkMode);
@@ -45,6 +47,7 @@ function displayFilms() {
     filmList.innerHTML = '';
     favoriteList.innerHTML = '';
     watchLaterList.innerHTML = '';
+    recommendedList.innerHTML = '';
 
     films.forEach((film, index) => {
         const li = createFilmItem(film, index);
@@ -118,7 +121,7 @@ function editFilm(index) {
     document.getElementById('genero').value = film.genero;
     document.getElementById('ano').value = film.ano;
     document.getElementById('sinopse').value = film.sinopse;
-    document.getElementById('trailer').value = film.trailer; 
+    document.getElementById('trailer').value = film.trailer;
     document.getElementById('avaliacao').value = film.avaliacao;
     document.getElementById('comentario').value = film.comentario;
 
@@ -130,6 +133,33 @@ function editFilm(index) {
 function deleteFilm(index) {
     films.splice(index, 1);
     displayFilms();
+}
+
+function generateRecommendations() {
+    const recommendedFilms = [];
+    const userRatedFilms = Object.keys(userRatings);
+    if (userRatedFilms.length > 0) {
+        films.forEach((film) => {
+            if (!userRatedFilms.includes(film.nome)) {
+                const similarityScore = 0;
+                userRatedFilms.forEach((ratedFilm) => {
+                    if (film.genero === films[ratedFilm].genero || film.diretor === films[ratedFilm].diretor) {
+                        similarityScore += 1;
+                    }
+                });
+                if (similarityScore > 0) {
+                    recommendedFilms.push({ film, score: similarityScore });
+                }
+            }
+        });
+        recommendedFilms.sort((a, b) => b.score - a.score);
+        recommendedList.innerHTML = '';
+        recommendedFilms.slice(0, 5).forEach((recommendedFilm) => {
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${recommendedFilm.film.nome}</strong>`;
+            recommendedList.appendChild(li);
+        });
+    }
 }
 
 toggleThemeButton.addEventListener('click', function() {
